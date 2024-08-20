@@ -12,14 +12,18 @@
                 </div>
             </div>
         </div>
-        <div class="px-4 py-6 md:flex md:items-center md:justify-between">
-            <span class="text-sm sm:text-center">© 2023 <a href="/">SERP</a>. All Rights Reserved.</span>
-            <div class="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
-                <a v-for="(social, socialIndex) in socialLinks" :key="socialIndex" :href="social.href" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                    <component :is="social.icon" class="w-4 h-4" />
-                    <span class="sr-only">{{ social.label }}</span>
-                </a>
-            </div>
+        <div>
+            <UDropdown :items="copyrightLinks" :popper="{ placement: 'top' }"
+                       :ui="{ item: { disabled: 'cursor-text select-text' }, background: 'bg-white dark:bg-gray-800' }">
+                SERP {{ new Date().getFullYear() }}
+
+                <template #item="{ item }">
+                    <span v-if="!item.to" class="text-primary">{{ item.label }}</span>
+                    <NuxtLink v-else :to="item.to" aria-label="Footer link" external>
+                        {{ item.label }}
+                    </NuxtLink>
+                </template>
+            </UDropdown>
         </div>
     </footer>
 </template>
@@ -29,7 +33,7 @@ import { defineComponent, h } from 'vue';
 
 const footerColumns = [
     {
-        title: 'Company',
+        title: 'Links',
         links: [
             { label: 'About', to: '#' },
             { label: 'Careers', to: '#' },
@@ -38,7 +42,7 @@ const footerColumns = [
         ]
     },
     {
-        title: 'Help center',
+        title: 'Links',
         links: [
             { label: 'Discord Server', to: '#' },
             { label: 'Twitter', to: '#' },
@@ -47,7 +51,7 @@ const footerColumns = [
         ]
     },
     {
-        title: 'Legal',
+        title: 'Links',
         links: [
             { label: 'Privacy Policy', to: '#' },
             { label: 'Licensing', to: '#' },
@@ -55,7 +59,7 @@ const footerColumns = [
         ]
     },
     {
-        title: 'Download',
+        title: 'Boring Stuff',
         links: [
             { label: 'iOS', to: '#' },
             { label: 'Android', to: '#' },
@@ -65,25 +69,116 @@ const footerColumns = [
     }
 ];
 
-const socialLinks = [
-    {
-        href: '#',
-        label: 'Facebook page',
-        icon: defineComponent({
-            render: () => h('svg', {
-                class: 'w-4 h-4',
-                'aria-hidden': 'true',
-                xmlns: 'http://www.w3.org/2000/svg',
-                fill: 'currentColor',
-                viewBox: '0 0 8 19'
-            }, [
-                h('path', {
-                    'fill-rule': 'evenodd',
-                    d: 'M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z',
-                    'clip-rule': 'evenodd'
-                })
-            ])
-        })
-    },
-];
+const copyrightLinks = [
+    [
+        {
+            label: 'SERP BRANDS',
+            disabled: true
+        }
+    ],
+    [
+        {
+            label: 'SERP',
+            to: 'https://serp.co/'
+        }
+    ],
+    [
+        {
+            label: 'SERP AI',
+            to: 'https://serp.ai'
+        }
+    ],
+    [
+        {
+            label: 'SERP FM',
+            to: 'https://serp.fm/'
+        }
+    ],
+    [
+        {
+            label: 'SERP App',
+            to: 'https://serp.app/'
+        }
+    ],
+    [
+        {
+            label: 'SERP Games',
+            to: 'https://serp.games/'
+        }
+    ],
+    [
+        {
+            label: 'SERP Wiki',
+            to: 'https://serp.wiki/'
+        }
+    ],
+    [
+        {
+            label: 'SERP Dev',
+            to: 'https://serp.dev/'
+        }
+    ],
+    [
+        {
+            label: 'SERP Style',
+            to: 'https://serp.style/'
+        }
+    ],
+    [
+        {
+            label: 'SERP Site',
+            to: 'https://serp.site/'
+        }
+    ],
+    [
+        {
+            label: 'SERP Media',
+            to: 'https://serp.media/'
+        }
+    ],
+    [
+        {
+            label: 'SERP University',
+            to: 'https://serpuniversity.com/'
+        }
+    ],
+    [
+        {
+            label: 'PARTNER BRANDS',
+            disabled: true
+        }
+    ],
+    [
+        {
+            label: 'DAFT FM',
+            to: 'https://daft.fm/'
+        }
+    ],
+    [
+        {
+            label: 'Boxing Undefeated',
+            to: 'https://boxingundefeated.com/'
+        }
+    ],
+    [
+        {
+            label: 'Devin Schumacher',
+            to: 'https://devinschumacher.com/'
+        }
+    ],
+    [
+        {
+            label: 'University of Guns',
+            to: 'https://universityofguns.com/'
+        }
+    ],
+    [
+        {
+            label: 'Merchant Alternatives',
+            to: 'https://merchantalternatives.com/'
+        }
+    ]
+]
+
+
 </script>
