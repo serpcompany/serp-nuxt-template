@@ -8,6 +8,13 @@ export default defineNuxtConfig({
   },
   extends: [
     "@nuxt/ui-pro"
-  ]
+  ],
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        trailingSlash: 'append',
+      }
+    }
+  },
 
 })
