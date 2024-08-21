@@ -1,3 +1,9 @@
+<template>
+    <div class="max-w-3xl mx-auto">
+        <UBreadcrumb :links="links" />
+    </div>
+</template>
+
 <script setup lang="ts">
 const route = useRoute();
 
@@ -9,7 +15,6 @@ const links = computed(() => {
     if (route.path !== '/') {
         breadcrumbs.push({
             label: 'Home',
-            icon: 'i-heroicons-home',
             to: '/',
         });
 
@@ -38,6 +43,4 @@ const links = computed(() => {
 });
 </script>
 
-<template>
-    <UBreadcrumb :links="links" />
-</template>
+

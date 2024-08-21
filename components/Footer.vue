@@ -29,33 +29,38 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, h } from 'vue';
 
 const footerColumns = [
     {
-        title: 'Links',
+        title: 'Core',
         links: [
             { label: 'About', to: '#' },
-            { label: 'Careers', to: '#' },
-            { label: 'Brand Center', to: '#' },
-            { label: 'Blog', to: '#' },
+            { label: 'Contact', to: '#' },
+            { label: 'Sitemap', to: '#' },
+            { label: 'Archive', to: '#' },
         ]
     },
     {
-        title: 'Links',
+        title: 'Modules',
         links: [
-            { label: 'Discord Server', to: '#' },
-            { label: 'Twitter', to: '#' },
-            { label: 'Facebook', to: '#' },
-            { label: 'Contact Us', to: '#' },
+            { label: 'About', to: '#' },
+            { label: 'Contact', to: '#' },
+            { label: 'Shop', to: '#' },
+            { label: 'Movies', to: '#' },
+            { label: 'Books', to: '#' },
+            { label: 'Courses', to: '#' },
         ]
     },
     {
-        title: 'Links',
+        title: 'Categories',
         links: [
-            { label: 'Privacy Policy', to: '#' },
-            { label: 'Licensing', to: '#' },
-            { label: 'Terms & Conditions', to: '#' },
+            { label: 'Category A', to: '#' },
+            { label: 'Category B', to: '#' },
+            { label: 'Category C', to: '#' },
+            { label: 'Category D', to: '#' },
+            { label: 'Category E', to: '#' },
+            { label: 'Category F', to: '#' },
+            { label: 'Category G', to: '#' },
         ]
     },
     {
@@ -80,7 +85,7 @@ const copyrightLinks = [
     [
         {
             label: 'SERP',
-            to: 'https://serp.co/'
+            to: 'https://serp.co'
         }
     ],
     [
@@ -91,56 +96,44 @@ const copyrightLinks = [
     ],
     [
         {
-            label: 'SERP FM',
-            to: 'https://serp.fm/'
-        }
-    ],
-    [
-        {
             label: 'SERP App',
-            to: 'https://serp.app/'
+            to: 'https://serp.app'
         }
     ],
     [
         {
             label: 'SERP Games',
-            to: 'https://serp.games/'
+            to: 'https://serp.games'
         }
     ],
     [
         {
             label: 'SERP Wiki',
-            to: 'https://serp.wiki/'
-        }
-    ],
-    [
-        {
-            label: 'SERP Dev',
-            to: 'https://serp.dev/'
+            to: 'https://serp.wiki'
         }
     ],
     [
         {
             label: 'SERP Style',
-            to: 'https://serp.style/'
-        }
-    ],
-    [
-        {
-            label: 'SERP Site',
-            to: 'https://serp.site/'
+            to: 'https://serp.style'
         }
     ],
     [
         {
             label: 'SERP Media',
-            to: 'https://serp.media/'
+            to: 'https://serp.media'
         }
     ],
     [
         {
             label: 'SERP University',
-            to: 'https://serpuniversity.com/'
+            to: 'https://serpuniversity.com'
+        }
+    ],
+    [
+        {
+            label: 'SERP Best',
+            to: 'https://best.serp.co'
         }
     ],
     [
@@ -152,31 +145,31 @@ const copyrightLinks = [
     [
         {
             label: 'DAFT FM',
-            to: 'https://daft.fm/'
+            to: 'https://daft.fm'
         }
     ],
     [
         {
             label: 'Boxing Undefeated',
-            to: 'https://boxingundefeated.com/'
+            to: 'https://boxingundefeated.com'
         }
     ],
     [
         {
             label: 'Devin Schumacher',
-            to: 'https://devinschumacher.com/'
+            to: 'https://devinschumacher.com'
         }
     ],
     [
         {
             label: 'University of Guns',
-            to: 'https://universityofguns.com/'
+            to: 'https://universityofguns.com'
         }
     ],
     [
         {
             label: 'Merchant Alternatives',
-            to: 'https://merchantalternatives.com/'
+            to: 'https://merchantalternatives.com'
         }
     ]
 ]
