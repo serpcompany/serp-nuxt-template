@@ -15,7 +15,7 @@
         <div>
             <UDropdown :items="copyrightLinks" :popper="{ placement: 'top' }"
                        :ui="{ item: { disabled: 'cursor-text select-text' }, background: 'bg-white dark:bg-gray-800' }">
-                SERP {{ new Date().getFullYear() }}
+                © SERP
 
                 <template #item="{ item }">
                     <span v-if="!item.to" class="text-primary">{{ item.label }}</span>
@@ -61,10 +61,11 @@ const footerColumns = [
     {
         title: 'Boring Stuff',
         links: [
-            { label: 'iOS', to: '#' },
-            { label: 'Android', to: '#' },
-            { label: 'Windows', to: '#' },
-            { label: 'MacOS', to: '#' },
+            { label: 'Legal', to: '/legal' },
+            { label: 'Terms', to: '/legal/terms' },
+            { label: 'Privacy', to: '/legal/privacy' },
+            { label: 'Affiliate Disclosure', to: '/legal/affiliate-disclosure' },
+            { label: 'DMCA', to: '/legal/dmca' },
         ]
     }
 ];
