@@ -13,6 +13,8 @@
     "@nuxt/devtools": "latest",
     "@nuxt/ui": "^2.17.0",
     "@nuxt/ui-pro": "^1.2.0",
-    "nuxt": "^3.12.4"
+    "nuxt": "^3.12.4",
+    "drizzle-kit": "^0.22.8",
+    "drizzle-orm": "^0.31.2"
   }
 }
