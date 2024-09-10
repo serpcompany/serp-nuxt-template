@@ -42,5 +42,3 @@ const links = computed(() => {
     return breadcrumbs;
 });
 </script>
-
-

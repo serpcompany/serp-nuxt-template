@@ -1,5 +1,2 @@
 - [x] make table for whatever post type etc.
 - [ ] put a markdown file in it and make sure it works
-
-
-

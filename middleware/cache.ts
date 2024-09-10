@@ -26,7 +26,12 @@ const cache = async (event: H3Event, next: Function) => {
     if (responseBody) {
         const cacheValue = JSON.stringify(responseBody);
         if (redisClient) {
-            await redisClient.set(key, cacheValue, 'EX', Number(process.env.CACHE_TTL));
+            await redisClient.set(
+                key,
+                cacheValue,
+                'EX',
+                Number(process.env.CACHE_TTL),
+            );
         } else {
             memoryCache.set(key, cacheValue, Number(process.env.CACHE_TTL));
         }

@@ -17,7 +17,10 @@ export default defineEventHandler(async (event) => {
         // Fetch modules based on the query
         let modules;
         if (moduleSlug) {
-            modules = await db.select().from(module).where(eq(module.slug, moduleSlug));
+            modules = await db
+                .select()
+                .from(module)
+                .where(eq(module.slug, moduleSlug));
         } else {
             modules = await db.select().from(module);
         }
@@ -32,7 +35,12 @@ export default defineEventHandler(async (event) => {
                         slug: post.slug,
                     })
                     .from(post)
-                    .where(and(eq(post.moduleId, module.id), eq(post.status, 'published')))
+                    .where(
+                        and(
+                            eq(post.moduleId, module.id),
+                            eq(post.status, 'published'),
+                        ),
+                    )
                     .orderBy(desc(post.createdAt))
                     .limit(safeLimit);
 
@@ -42,7 +50,7 @@ export default defineEventHandler(async (event) => {
                     slug: module.slug,
                     posts,
                 };
-            })
+            }),
         );
 
         return postsPerModule;

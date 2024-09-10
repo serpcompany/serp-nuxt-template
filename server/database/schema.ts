@@ -1,5 +1,13 @@
 // server/database/schema.ts
-import { pgTable, serial, varchar, text, timestamp, integer, primaryKey } from 'drizzle-orm/pg-core';
+import {
+    pgTable,
+    serial,
+    varchar,
+    text,
+    timestamp,
+    integer,
+    primaryKey,
+} from 'drizzle-orm/pg-core';
 
 export const module = pgTable('module', {
     id: serial('id').primaryKey(),
@@ -9,7 +17,9 @@ export const module = pgTable('module', {
 
 export const post = pgTable('post', {
     id: serial('id').primaryKey(),
-    moduleId: integer('module_id').notNull().references(() => module.id),
+    moduleId: integer('module_id')
+        .notNull()
+        .references(() => module.id),
     title: varchar('title', { length: 255 }).notNull(),
     slug: varchar('slug', { length: 255 }).notNull().unique(),
     content: text('content').notNull(),
@@ -24,9 +34,17 @@ export const tag = pgTable('tag', {
     slug: varchar('slug', { length: 255 }).notNull().unique(),
 });
 
-export const postTagMap = pgTable('post_tag_map', {
-    postId: integer('post_id').notNull().references(() => post.id),
-    tagId: integer('tag_id').notNull().references(() => tag.id),
-}, (table) => ({
-    pk: primaryKey(table.postId, table.tagId),
-}));
+export const postTagMap = pgTable(
+    'post_tag_map',
+    {
+        postId: integer('post_id')
+            .notNull()
+            .references(() => post.id),
+        tagId: integer('tag_id')
+            .notNull()
+            .references(() => tag.id),
+    },
+    (table) => ({
+        pk: primaryKey(table.postId, table.tagId),
+    }),
+);
