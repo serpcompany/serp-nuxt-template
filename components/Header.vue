@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const router = useRouter();
 
 const links = [
@@ -21,12 +20,10 @@ const links = [
             {
                 label: 'Video Courses',
                 to: '',
-
-            }
-        ]
-    }
+            },
+        ],
+    },
 ];
-
 </script>
 
 <template>

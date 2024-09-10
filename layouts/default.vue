@@ -1,6 +1,6 @@
 <template>
     <div class="page-container max-x-screen">
-        <Header/>
+        <Header />
         <div>
             <div class="flex mx-auto">
                 <Breadcrumbs class="m-4 max-w-7xl w-screen" />
@@ -10,7 +10,6 @@
         <Footer class="mt-16 mx-auto xl:grid-cols-3" />
     </div>
 </template>
-
 
 <style scoped>
 .page-container {

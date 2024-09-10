@@ -8,7 +8,7 @@ import sanitizeHtml from 'sanitize-html';
 const md = new MarkdownIt({
     html: true,
     breaks: true,
-    linkify: true
+    linkify: true,
 });
 
 const sanitizeOptions = {
@@ -17,11 +17,11 @@ const sanitizeOptions = {
         ...sanitizeHtml.defaults.allowedAttributes,
         img: ['src', 'alt', 'height', 'width'],
         div: ['class'],
-        a: ['href', 'target']
+        a: ['href', 'target'],
     },
     allowedClasses: {
-        div: ['image']
-    }
+        div: ['image'],
+    },
 };
 
 export default defineEventHandler(async (event) => {
@@ -57,8 +57,8 @@ export default defineEventHandler(async (event) => {
                 and(
                     eq(module.slug, moduleSlug),
                     eq(post.slug, postSlug),
-                    eq(post.status, 'published')
-                )
+                    eq(post.status, 'published'),
+                ),
             )
             .limit(1);
 
