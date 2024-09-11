@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-3xl mx-auto" v-for="module in modules" :key="module.id">
+    <div class="mx-auto max-w-3xl" v-for="module in modules" :key="module.id">
         <NuxtLink :to="`/${module.slug}`">
             <h2 class="text-xl">{{ module.name }}</h2>
         </NuxtLink>

@@ -2,7 +2,7 @@
     <footer>
         <div class="mx-auto w-full max-w-7xl">
             <div
-                class="grid grid-cols-1 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4"
+                class="grid grid-cols-1 gap-8 px-4 py-6 md:grid-cols-4 lg:py-8"
             >
                 <div v-for="(column, index) in footerColumns" :key="index">
                     <h2 class="mb-6 text-sm font-semibold uppercase">

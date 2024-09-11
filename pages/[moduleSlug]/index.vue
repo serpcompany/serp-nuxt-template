@@ -1,6 +1,6 @@
 <!-- pages/[module]/index.vue -->
 <template>
-    <div class="max-w-3xl mx-auto">
+    <div class="mx-auto max-w-3xl">
         <NuxtLink :to="`/${module.slug}`">
             <h2 class="text-xl">{{ module.name }}</h2>
         </NuxtLink>

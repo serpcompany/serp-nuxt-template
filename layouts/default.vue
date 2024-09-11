@@ -2,12 +2,12 @@
     <div class="page-container max-x-screen">
         <Header />
         <div>
-            <div class="flex mx-auto">
-                <Breadcrumbs class="m-4 max-w-7xl w-screen" />
+            <div class="mx-auto flex">
+                <Breadcrumbs class="m-4 w-screen max-w-7xl" />
             </div>
             <slot />
         </div>
-        <Footer class="mt-16 mx-auto xl:grid-cols-3" />
+        <Footer class="mx-auto mt-16 xl:grid-cols-3" />
     </div>
 </template>
 

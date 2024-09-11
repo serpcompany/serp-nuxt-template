@@ -29,7 +29,7 @@ const links = [
 <template>
     <UHeader :links="links">
         <template #logo>
-            <Logo class="w-auto h-6" />
+            <Logo class="h-6 w-auto" />
             <span class="sr-only">SERP Best</span>
         </template>
 
