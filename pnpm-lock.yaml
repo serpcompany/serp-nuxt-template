@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@nuxt/eslint':
+        specifier: ^0.5.6
+        version: 0.5.6(eslint@9.10.0(jiti@1.21.6))(magicast@0.3.5)(rollup@4.21.2)(typescript@5.6.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3)
       '@nuxt/ui':
         specifier: ^2.18.4
         version: 2.18.4(magicast@0.3.5)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(vue@3.5.3(typescript@5.6.2))(webpack-sources@3.2.3)
@@ -42,9 +45,6 @@ importers:
       '@nuxt/devtools':
         specifier: latest
         version: 1.4.1(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3)
-      '@nuxt/eslint':
-        specifier: ^0.5.6
-        version: 0.5.6(eslint@9.10.0(jiti@1.21.6))(magicast@0.3.5)(rollup@4.21.2)(typescript@5.6.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3)
       eslint:
         specifier: ^9.10.0
         version: 9.10.0(jiti@1.21.6)

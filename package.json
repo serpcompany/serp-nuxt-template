@@ -11,6 +11,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
+    "@nuxt/eslint": "^0.5.6",
     "@nuxt/ui": "^2.18.4",
     "@nuxt/ui-pro": "^1.4.1",
     "drizzle-kit": "^0.24.2",
@@ -24,7 +25,6 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@nuxt/eslint": "^0.5.6",
     "eslint": "^9.10.0",
     "prettier": "^3.3.3",
     "prettier-plugin-packagejson": "^2.5.2",
