@@ -1,15 +1,15 @@
 <!-- components/post/list.vue -->
 <template>
-    <div class="max-w-3xl mx-auto px-4 py-8 font-sans">
+    <div class="mx-auto max-w-3xl px-4 py-8 font-sans">
         <ul class="space-y-4">
             <li
                 v-for="post in posts"
                 :key="post.id"
-                class="flex justify-between items-baseline py-4 border-b border-gray-200"
+                class="flex items-baseline justify-between border-b border-gray-200 py-4"
             >
                 <NuxtLink
                     :to="getPostUrl(post.slug)"
-                    class="hover:underline text-lg mr-4 flex-grow"
+                    class="mr-4 flex-grow text-lg hover:underline"
                 >
                     {{ post.title }}
                 </NuxtLink>

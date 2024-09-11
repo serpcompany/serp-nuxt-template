@@ -1,5 +1,5 @@
 <template>
-    <UPage v-show="post" class="max-w-[1408px] mx-auto px-4">
+    <UPage v-show="post" class="mx-auto max-w-[1408px] px-4">
         <template #left>
             <!-- <UContentToc v-if="post.body?.toc?.links?.length" :links="post.body.toc.links" /> -->
         </template>
@@ -11,12 +11,12 @@
 
         <template #right>
             <UAside
-                class="sticky top-[--header-height] bg-background/75 backdrop-blur -mx-4 sm:-mx-6 px-4 sm:px-6 lg:px-4 lg:-mx-4 overflow-y-auto max-h-[calc(100vh-var(--header-height))]"
+                class="bg-background/75 sticky top-[--header-height] -mx-4 max-h-[calc(100vh-var(--header-height))] overflow-y-auto px-4 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-4 lg:px-4"
             >
                 <div
-                    class="border-b border-dashed border-gray-200 dark:border-gray-800 lg:border-0 space-y-3"
+                    class="space-y-3 border-b border-dashed border-gray-200 lg:border-0 dark:border-gray-800"
                 >
-                    <h2 class="font-semibold text-sm/6 truncate mb-4"></h2>
+                    <h2 class="mb-4 truncate text-sm/6 font-semibold"></h2>
                 </div>
             </UAside>
         </template>

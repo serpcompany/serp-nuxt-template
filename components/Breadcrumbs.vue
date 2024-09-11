@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-3xl mx-auto">
+    <div class="mx-auto max-w-3xl">
         <UBreadcrumb :links="links" />
     </div>
 </template>
