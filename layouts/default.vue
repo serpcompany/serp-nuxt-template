@@ -1,13 +1,13 @@
 <template>
     <div class="page-container max-x-screen">
-        <Header />
+        <SiteHeader />
         <div>
             <div class="mx-auto flex">
-                <Breadcrumbs class="m-4 w-screen max-w-7xl" />
+                <SiteBreadcrumbs class="m-4 w-screen max-w-7xl" />
             </div>
             <slot />
         </div>
-        <Footer class="mx-auto mt-16 xl:grid-cols-3" />
+        <SiteFooter class="mx-auto mt-16 xl:grid-cols-3" />
     </div>
 </template>
 

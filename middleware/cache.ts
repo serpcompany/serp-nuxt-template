@@ -1,8 +1,9 @@
 // middleware/cache.ts
-import { H3Event } from 'h3';
+import type { H3Event } from 'h3';
 import redisClient from '~/utils/redis';
 import memoryCache from '~/utils/memoryCache';
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type -- disabling because I don't know what the types should be at the moment; this file has bigger problems
 const cache = async (event: H3Event, next: Function) => {
     const key = event.req.url as string;
 
