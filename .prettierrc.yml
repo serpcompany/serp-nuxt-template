@@ -1,9 +1,9 @@
 semi: true
 singleQuote: true
 plugins:
-    - prettier-plugin-packagejson
-    - prettier-plugin-tailwindcss
+  - prettier-plugin-packagejson
+  - prettier-plugin-tailwindcss
 tailwindFunctions:
-    - cn
-    - clsx
-    - twMerge
+  - cn
+  - clsx
+  - twMerge
