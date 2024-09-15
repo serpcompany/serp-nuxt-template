@@ -1,3 +1,20 @@
+<template>
+  <UHeader :links="links">
+    <template #logo>
+      <SiteLogo class="h-6 w-auto" />
+      <span class="sr-only">SERP Best</span>
+    </template>
+
+    <template #right>
+      <UColorModeButton />
+    </template>
+
+    <template #panel>
+      <UNavigationTree :links="links" />
+    </template>
+  </UHeader>
+</template>
+
 <script setup lang="ts">
 const links = [
   {
@@ -23,20 +40,3 @@ const links = [
   },
 ];
 </script>
-
-<template>
-  <UHeader :links="links">
-    <template #logo>
-      <SiteLogo class="h-6 w-auto" />
-      <span class="sr-only">SERP Best</span>
-    </template>
-
-    <template #right>
-      <UColorModeButton />
-    </template>
-
-    <template #panel>
-      <UNavigationTree :links="links" />
-    </template>
-  </UHeader>
-</template>
