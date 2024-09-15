@@ -1,4 +1,4 @@
-export default defineNuxtRouteMiddleware((to, from) => {
+export default defineNuxtRouteMiddleware((to) => {
     if (to.path !== '/' && !to.path.endsWith('/')) {
         const { path, query, hash } = to;
         const nextPath = path + '/';

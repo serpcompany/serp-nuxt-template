@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const router = useRouter();
-
 const links = [
     {
         label: 'Home',
@@ -29,7 +27,7 @@ const links = [
 <template>
     <UHeader :links="links">
         <template #logo>
-            <Logo class="h-6 w-auto" />
+            <SiteLogo class="h-6 w-auto" />
             <span class="sr-only">SERP Best</span>
         </template>
 

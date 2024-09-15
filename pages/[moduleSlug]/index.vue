@@ -4,7 +4,7 @@
         <NuxtLink :to="`/${module.slug}`">
             <h2 class="text-xl">{{ module.name }}</h2>
         </NuxtLink>
-        <PostList :slugPrefix="module.slug" :posts="module.posts" />
+        <PostList :slug-prefix="module.slug" :posts="module.posts" />
     </div>
 </template>
 <script setup>
@@ -14,7 +14,6 @@ const { moduleSlug } = route.params;
 
 const fetchModule = async () => {
     const response = await $fetch(`/api/posts?module=${moduleSlug}`);
-    console.log(response);
     if (!response || response.length === 0) {
         throw createError({
             statusCode: 404,

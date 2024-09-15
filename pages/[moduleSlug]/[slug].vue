@@ -6,7 +6,8 @@
 
         <h1>{{ post.title }}</h1>
         <UPageBody prose>
-            <div v-html="post.content"></div>
+            <!-- eslint-disable-next-line vue/no-v-html -- no other option at the moment: post content is trusted and cannot be user-authored -->
+            <div v-html="post.content" />
         </UPageBody>
 
         <template #right>
@@ -16,7 +17,7 @@
                 <div
                     class="space-y-3 border-b border-dashed border-gray-200 lg:border-0 dark:border-gray-800"
                 >
-                    <h2 class="mb-4 truncate text-sm/6 font-semibold"></h2>
+                    <h2 class="mb-4 truncate text-sm/6 font-semibold" />
                 </div>
             </UAside>
         </template>
