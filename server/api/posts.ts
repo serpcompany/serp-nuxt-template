@@ -1,10 +1,14 @@
 // server/api/posts.ts
-import type { ModuleResponse } from '.';
+import type { Module, Post } from '.';
 import { z } from 'zod';
 import { defineEventHandler, getValidatedQuery } from 'h3';
 import { eq, desc, and } from 'drizzle-orm';
 import cache from '~/middleware/cache';
 import { module, post } from '~/server/database/schema';
+
+export type Response = (Module & {
+  posts: Pick<Post, 'id' | 'title' | 'slug'>[];
+})[];
 
 // Get the post limit and module from query parameters
 const querySchema = z.object({
@@ -12,8 +16,8 @@ const querySchema = z.object({
   limit: z.number().int().positive().optional(),
 });
 
-export default defineEventHandler(async (event): Promise<ModuleResponse> => {
-  return cache(event, async () => {
+export default defineEventHandler(async (event): Promise<Response> => {
+  return cache(event, async (): Promise<Response> => {
     const query = await getValidatedQuery(event, (body) =>
       querySchema.safeParse(body),
     );

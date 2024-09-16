@@ -12,11 +12,3 @@ export interface Post {
   createdAt: Date;
   updatedAt: Date;
 }
-
-export interface ModuleResponse extends Module {
-  posts: Post[];
-}
-
-export interface PostResponse extends Post {
-  module: Module;
-}
