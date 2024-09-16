@@ -45,6 +45,6 @@ export const postTagMap = pgTable(
       .references(() => tag.id),
   },
   (table) => ({
-    pk: primaryKey(table.postId, table.tagId),
+    pk: primaryKey({ columns: [table.postId, table.tagId] }),
   }),
 );
