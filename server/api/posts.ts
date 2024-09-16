@@ -1,9 +1,8 @@
 // server/api/posts.ts
 import type { PostPreview, Module } from '~/utils/post';
 import { z } from 'zod';
-import { defineEventHandler, getValidatedQuery } from 'h3';
+import { getValidatedQuery } from 'h3';
 import { eq, desc, and } from 'drizzle-orm';
-import cache from '~/middleware/cache';
 import { module, post } from '~/server/database/schema';
 
 export type Response = (Module & {
@@ -16,8 +15,8 @@ const querySchema = z.object({
   limit: z.coerce.number().int().positive().optional(),
 });
 
-export default defineEventHandler(async (event): Promise<Response> => {
-  return cache(event, async (): Promise<Response> => {
+export default defineCachedEventHandler(
+  async (event): Promise<Response> => {
     const query = await getValidatedQuery(event, (body) =>
       querySchema.safeParse(body),
     );
@@ -80,5 +79,6 @@ export default defineEventHandler(async (event): Promise<Response> => {
     );
 
     return postsPerModule;
-  });
-});
+  },
+  { maxAge: 86400 },
+);

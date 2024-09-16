@@ -1,8 +1,7 @@
 import type { Module, Post } from '~/utils/post';
 import { z } from 'zod';
-import { defineEventHandler, getValidatedQuery, createError } from 'h3';
+import { getValidatedQuery, createError } from 'h3';
 import { eq, and } from 'drizzle-orm';
-import cache from '~/middleware/cache';
 import { module, post } from '~/server/database/schema';
 import MarkdownIt from 'markdown-it';
 import sanitizeHtml from 'sanitize-html';
@@ -35,8 +34,8 @@ const sanitizeOptions = {
   },
 };
 
-export default defineEventHandler(async (event): Promise<Response> => {
-  return cache(event, async (): Promise<Response> => {
+export default defineCachedEventHandler(
+  async (event): Promise<Response> => {
     const query = await getValidatedQuery(event, (body) =>
       querySchema.safeParse(body),
     );
@@ -104,5 +103,6 @@ export default defineEventHandler(async (event): Promise<Response> => {
         slug: foundModule.slug,
       },
     };
-  });
-});
+  },
+  { maxAge: 86400 },
+);
