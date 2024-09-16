@@ -41,6 +41,13 @@ export default defineEventHandler(async (event): Promise<ModuleResponse> => {
       modules = await db.select().from(module);
     }
 
+    if (!modules.length) {
+      throw createError({
+        statusCode: 404,
+        message: 'Module not found',
+      });
+    }
+
     // Fetch posts for each module
     const postsPerModule = await Promise.all(
       modules.map(async (module) => {
