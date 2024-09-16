@@ -1,9 +1,15 @@
-import { defineEventHandler, getQuery, createError } from 'h3';
+import { z } from 'zod';
+import { defineEventHandler, getValidatedQuery, createError } from 'h3';
 import { eq, and } from 'drizzle-orm';
 import cache from '~/middleware/cache';
 import { module, post } from '~/server/database/schema';
 import MarkdownIt from 'markdown-it';
 import sanitizeHtml from 'sanitize-html';
+
+const querySchema = z.object({
+  module: z.string(),
+  slug: z.string(),
+});
 
 const md = new MarkdownIt({
   html: true,
@@ -26,14 +32,20 @@ const sanitizeOptions = {
 
 export default defineEventHandler(async (event) => {
   return cache(event, async () => {
-    const { module: moduleSlug, slug: postSlug } = getQuery(event);
+    const query = await getValidatedQuery(event, (body) =>
+      querySchema.safeParse(body),
+    );
 
-    if (!moduleSlug || !postSlug) {
+    if (!query.success) {
+      // eslint-disable-next-line no-console -- log output to console
+      console.error(query.error.message);
       throw createError({
         statusCode: 400,
-        message: 'Module and post slug are required',
+        message: 'Malformed request',
       });
     }
+
+    const { module: moduleSlug, slug: postSlug } = query.data;
 
     const result = await db
       .select({

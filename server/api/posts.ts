@@ -1,18 +1,33 @@
 // server/api/posts.ts
-import { defineEventHandler, getQuery } from 'h3';
+import { z } from 'zod';
+import { defineEventHandler, getValidatedQuery } from 'h3';
 import { eq, desc, and } from 'drizzle-orm';
 import cache from '~/middleware/cache';
 import { module, post } from '~/server/database/schema';
 
+// Get the post limit and module from query parameters
+const querySchema = z.object({
+  module: z.string(),
+  limit: z.number().int().positive().optional(),
+});
+
 export default defineEventHandler(async (event) => {
   return cache(event, async () => {
-    // Get the limit and module from query parameters
-    const query = getQuery(event);
-    const limit = query.limit ? parseInt(query.limit as string, 10) : 50;
-    const moduleSlug = query.module as string | undefined;
+    const query = await getValidatedQuery(event, (body) =>
+      querySchema.safeParse(body),
+    );
 
-    // Ensure limit is a positive number
-    const safeLimit = Math.max(1, limit);
+    if (!query.success) {
+      // eslint-disable-next-line no-console -- log output to console
+      console.error(query.error.message);
+      throw createError({
+        statusCode: 400,
+        message: 'Malformed request',
+      });
+    }
+
+    const limit = query.data.limit || 50;
+    const moduleSlug = query.data.module;
 
     // Fetch modules based on the query
     let modules;
@@ -39,7 +54,7 @@ export default defineEventHandler(async (event) => {
             and(eq(post.moduleId, module.id), eq(post.status, 'published')),
           )
           .orderBy(desc(post.createdAt))
-          .limit(safeLimit);
+          .limit(limit);
 
         return {
           id: module.id,
