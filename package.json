@@ -9,7 +9,8 @@
     "generate": "nuxt generate",
     "postinstall": "nuxt prepare",
     "lint": "prettier -c . && eslint --quiet",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "serve": "nuxt serve"
   },
   "dependencies": {
     "@nuxt/eslint": "^0.5.7",
