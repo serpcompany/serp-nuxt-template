@@ -1,4 +1,5 @@
 // server/api/posts.ts
+import type { ModuleResponse } from '.';
 import { z } from 'zod';
 import { defineEventHandler, getValidatedQuery } from 'h3';
 import { eq, desc, and } from 'drizzle-orm';
@@ -11,7 +12,7 @@ const querySchema = z.object({
   limit: z.number().int().positive().optional(),
 });
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<ModuleResponse> => {
   return cache(event, async () => {
     const query = await getValidatedQuery(event, (body) =>
       querySchema.safeParse(body),

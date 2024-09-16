@@ -1,3 +1,4 @@
+import type { PostResponse } from '.';
 import { z } from 'zod';
 import { defineEventHandler, getValidatedQuery, createError } from 'h3';
 import { eq, and } from 'drizzle-orm';
@@ -30,7 +31,7 @@ const sanitizeOptions = {
   },
 };
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<PostResponse> => {
   return cache(event, async () => {
     const query = await getValidatedQuery(event, (body) =>
       querySchema.safeParse(body),
