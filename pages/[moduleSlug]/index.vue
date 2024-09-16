@@ -8,23 +8,20 @@
   </div>
 </template>
 <script setup>
-const module = ref({});
 const route = useRoute();
 const { moduleSlug } = route.params;
 
-const fetchModule = async () => {
-  const response = await $fetch(`/api/posts?module=${moduleSlug}`);
-  if (!response || response.length === 0) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: 'Page not found',
-      fatal: true,
-    });
-  }
-  module.value = response[0];
-};
-
-onMounted(() => {
-  fetchModule();
+const { data } = await useFetch('/api/posts', {
+  query: { module: moduleSlug },
 });
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page not found',
+    fatal: true,
+  });
+}
+
+const module = data.value;
 </script>

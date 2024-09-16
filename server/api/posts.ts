@@ -8,7 +8,7 @@ import { module, post } from '~/server/database/schema';
 
 // Get the post limit and module from query parameters
 const querySchema = z.object({
-  module: z.string(),
+  module: z.string().optional(),
   limit: z.number().int().positive().optional(),
 });
 

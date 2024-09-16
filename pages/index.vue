@@ -9,16 +9,15 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from 'vue';
+const { data } = await useFetch('/api/posts');
 
-const modules = ref([]);
+if (!data.value) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: 'Error loading page',
+    fatal: true,
+  });
+}
 
-const fetchModules = async () => {
-  const response = await $fetch('/api/posts');
-  modules.value = response;
-};
-
-onMounted(() => {
-  fetchModules();
-});
+const modules = data.value;
 </script>

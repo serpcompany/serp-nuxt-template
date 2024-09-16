@@ -28,20 +28,20 @@
 const route = useRoute();
 const { moduleSlug, slug } = route.params;
 
-const post = ref({});
-const fetchPost = async () => {
-  const response = await $fetch(`/api/post?module=${moduleSlug}&slug=${slug}`);
-  if (!response) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: 'Page not found',
-      fatal: true,
-    });
-  }
-  post.value = response;
-};
-
-onMounted(() => {
-  fetchPost();
+const { data } = await useFetch('/api/post', {
+  query: {
+    module: moduleSlug,
+    slug,
+  },
 });
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page not found',
+    fatal: true,
+  });
+}
+
+const post = data.value; // post is not a ref, immutable
 </script>
