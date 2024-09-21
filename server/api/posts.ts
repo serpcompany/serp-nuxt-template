@@ -80,5 +80,5 @@ export default defineCachedEventHandler(
 
     return postsPerModule;
   },
-  { maxAge: 86400 },
+  { maxAge: Number(process.env.CACHE_TTL || 3600) },
 );

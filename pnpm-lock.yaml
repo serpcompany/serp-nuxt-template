@@ -32,6 +32,9 @@ importers:
       drizzle-orm:
         specifier: ^0.33.0
         version: 0.33.0(postgres@3.4.4)
+      ioredis:
+        specifier: ^5.4.1
+        version: 5.4.1
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0

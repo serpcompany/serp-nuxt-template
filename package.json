@@ -20,6 +20,7 @@
     "@nuxt/ui-pro": "^1.4.2",
     "@nuxtjs/seo": "2.0.0-rc.21",
     "drizzle-orm": "^0.33.0",
+    "ioredis": "^5.4.1",
     "markdown-it": "^14.1.0",
     "nuxt": "^3.13.2",
     "postgres": "^3.4.4",
