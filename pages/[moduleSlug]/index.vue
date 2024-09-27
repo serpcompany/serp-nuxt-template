@@ -7,6 +7,7 @@
     <PostList :slug-prefix="module.slug" :posts="module.posts" />
   </div>
 </template>
+
 <script setup>
 const route = useRoute();
 const { moduleSlug } = route.params;

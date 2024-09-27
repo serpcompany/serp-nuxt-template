@@ -1,5 +1,6 @@
 <template>
   <div class="mx-auto max-w-3xl">
+    <h1 class="text-center text-2xl font-bold">{{ site.name }}</h1>
     <div v-for="module in modules" :key="module.id">
       <NuxtLink :to="`/${module.slug}`">
         <h2 class="text-xl">{{ module.name }}</h2>
@@ -19,5 +20,6 @@ if (!data.value) {
   });
 }
 
+const site = useSiteConfig();
 const modules = data.value;
 </script>
