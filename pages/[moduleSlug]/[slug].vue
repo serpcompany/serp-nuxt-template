@@ -44,4 +44,8 @@ if (!data.value) {
 }
 
 const post = data.value; // post is not a ref, immutable
+
+definePageMeta({
+  title: post.title,
+});
 </script>

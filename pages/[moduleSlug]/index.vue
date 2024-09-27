@@ -24,4 +24,8 @@ if (!data.value) {
 }
 
 const module = data.value;
+
+definePageMeta({
+  title: module.name,
+});
 </script>
