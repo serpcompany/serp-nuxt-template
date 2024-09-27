@@ -35,7 +35,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  ssr: false,
+  ssr: true,
   nitro: {
     preset: 'static', // Ensure the preset is for static sites
   }
