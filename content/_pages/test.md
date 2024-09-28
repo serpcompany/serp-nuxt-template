@@ -1,6 +1,6 @@
 ---
 title: Test page
-slug: test/nested/routes/
+slug: /test/nested/routes/
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

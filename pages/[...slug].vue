@@ -28,8 +28,11 @@ const route = useRoute();
 const { slug } = route.params;
 
 const slugPath = typeof slug === 'string' ? slug : slug.join('/');
+
 const { data } = await useAsyncData(slugPath, () =>
-  queryContent('_pages').where({ slug: slugPath }).findOne(),
+  queryContent('_pages')
+    .where({ slug: { $regex: new RegExp(`^/?${slugPath}/?$`, 'i') } })
+    .findOne(),
 );
 
 if (!data.value) {
