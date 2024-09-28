@@ -1,75 +1,15 @@
-# Nuxt UI Minimal Starter
+# README
 
-Look at [Nuxt docs](https://nuxt.com/docs/getting-started/introduction) and [Nuxt UI docs](https://ui.nuxt.com) to learn more.
+This is our Nuxt boilerplate project for websites.
 
-## Setup
+Technologies:
 
-Make sure to install the dependencies:
+- Nuxt + NuxtUI
+- Postgres + Drizzle ORM
+- Redis
+- Docker
 
-```bash
-# npm
-npm install
 
-# pnpm
-pnpm install
+## Database
 
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+This project uses a self-hosted postgres database on SERP server. Each developer should have their own permissioned credentials to access the database.
