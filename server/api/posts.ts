@@ -13,7 +13,7 @@ export type Response = (Module & {
 // Get the post limit and module from query parameters
 const querySchema = z.object({
   module: z.string().optional(),
-  limit: z.number().int().positive().optional(),
+  limit: z.coerce.number().int().positive().optional(),
 });
 
 export default defineEventHandler(async (event): Promise<Response> => {

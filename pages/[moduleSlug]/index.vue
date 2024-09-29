@@ -15,13 +15,13 @@ const { data } = await useFetch('/api/posts', {
   query: { module: moduleSlug },
 });
 
-if (!data.value) {
+const module = data.value[0];
+
+if (!module) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Page not found',
     fatal: true,
   });
 }
-
-const module = data.value;
 </script>

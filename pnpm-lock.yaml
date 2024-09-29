@@ -57,6 +57,9 @@ importers:
       '@types/sanitize-html':
         specifier: ^2.13.0
         version: 2.13.0
+      drizzle-kit:
+        specifier: ^0.24.2
+        version: 0.24.2
       eslint:
         specifier: ^9.10.0
         version: 9.11.1(jiti@2.0.0)
