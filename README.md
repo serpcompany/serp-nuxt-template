@@ -13,7 +13,7 @@ This is our Nuxt boilerplate project for websites.
 
 ## Database
 
-This project uses a self-hosted postgres database on SERP server. 
+This project uses a self-hosted postgres database on SERP server.
 
 You can interact with the database in a GUI using [Drizzle Studio](https://orm.drizzle.team/drizzle-studio/overview#:~:text=Launch%20Drizzle%20Studio).
 
