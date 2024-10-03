@@ -25,13 +25,11 @@
 
 <script setup lang="ts">
 const route = useRoute();
-const { slug } = route.params;
+const slug = normalizeSlug(route.params.slug);
 
-const slugPath = typeof slug === 'string' ? slug : slug.join('/');
-
-const { data } = await useAsyncData(slugPath, () =>
+const { data } = await useAsyncData(slug, () =>
   queryContent('_pages')
-    .where({ slug: { $regex: new RegExp(`^/?${slugPath}/?$`, 'i') } })
+    .where({ slug: { $regex: new RegExp(`^/?${slug}/?$`, 'i') } })
     .findOne(),
 );
 
