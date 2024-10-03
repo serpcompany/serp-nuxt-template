@@ -61,3 +61,9 @@ export function capitalize(str: string): string {
     )
     .join(' ');
 }
+
+/** removes leading and trailing slashes from a dynamic page route variable */
+export function normalizeSlug(slug: string | string[]): string {
+  const path = typeof slug === 'string' ? slug : slug.join('/');
+  return path.replace(/^\//, '').replace(/\/$/, '');
+}
