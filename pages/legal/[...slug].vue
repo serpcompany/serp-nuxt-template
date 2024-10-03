@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto max-w-3xl">
     <UPageBody prose>
-      <ContentRenderer :value="post" />
+      <ContentRenderer :value="post" :data="{ site }" />
     </UPageBody>
   </div>
 </template>
@@ -35,6 +35,17 @@ if (!data.value) {
 }
 
 const post = data.value; // post is not a ref, immutable
+const site = useSiteConfig();
+
+// compute some template variables
+site.hostname = new URL(site.url).hostname;
+site.emailMasked = Object.entries(site.email).reduce(
+  (masked, [label, email]) =>
+    typeof email === 'string'
+      ? { ...masked, [label]: maskEmail(email) }
+      : masked,
+  {},
+);
 
 useContentHead(post);
 </script>

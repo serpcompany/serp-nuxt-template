@@ -67,3 +67,7 @@ export function normalizeSlug(slug: string | string[]): string {
   const path = typeof slug === 'string' ? slug : slug.join('/');
   return path.replace(/^\//, '').replace(/\/$/, '');
 }
+
+export function maskEmail(email: string): string {
+  return email.replaceAll('@', ' [at] ').replaceAll('.', ' [dot] ');
+}
