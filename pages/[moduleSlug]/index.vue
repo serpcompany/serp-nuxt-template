@@ -25,4 +25,8 @@ if (!module) {
     fatal: true,
   });
 }
+
+useHead({
+  title: module.name,
+});
 </script>
