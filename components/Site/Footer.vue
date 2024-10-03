@@ -43,6 +43,27 @@
 </template>
 
 <script setup lang="ts">
+import type { ParsedContent } from '@nuxt/content';
+
+interface Link {
+  label: string;
+  to: string;
+}
+
+function toLink({ title, _path }: ParsedContent): Link | null {
+  if (!title || !_path) return null;
+  return {
+    label: title,
+    to: _path,
+  };
+}
+
+const { data: legalPages } = await useAsyncData('legal', () =>
+  queryContent('legal').find(),
+);
+
+const legalLinks = legalPages.value?.map(toLink).filter(isNonNullable) || [];
+
 const footerColumns = [
   {
     title: 'Core',
@@ -78,16 +99,7 @@ const footerColumns = [
   },
   {
     title: 'Boring Stuff',
-    links: [
-      { label: 'Legal', to: '/legal' },
-      { label: 'Terms', to: '/legal/terms' },
-      { label: 'Privacy', to: '/legal/privacy' },
-      {
-        label: 'Affiliate Disclosure',
-        to: '/legal/affiliate-disclosure',
-      },
-      { label: 'DMCA', to: '/legal/dmca' },
-    ],
+    links: legalLinks,
   },
 ];
 
