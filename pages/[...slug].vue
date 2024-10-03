@@ -35,7 +35,9 @@ const { data } = await useAsyncData(slugPath, () =>
     .findOne(),
 );
 
-if (!data.value) {
+const post = data.value; // post is not a ref, immutable
+
+if (!post) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Page not found',
@@ -43,5 +45,5 @@ if (!data.value) {
   });
 }
 
-const post = data.value; // post is not a ref, immutable
+useContentHead(post);
 </script>
