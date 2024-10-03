@@ -2,6 +2,12 @@ import type { Config } from 'tailwindcss';
 
 export default <Partial<Config>>{
   theme: {
+    container: {
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+      },
+    },
     fontFamily: {
       sans: [
         '-apple-system',

@@ -4,8 +4,8 @@
       <!-- <UContentToc v-if="post.body?.toc?.links?.length" :links="post.body.toc.links" /> -->
     </template>
 
-    <h1>{{ post.title }}</h1>
-    <UPageBody prose>
+    <UPageBody prose class="mx-auto max-w-prose">
+      <h1>{{ post.title }}</h1>
       <!-- eslint-disable-next-line vue/no-v-html -- no other option at the moment: post content is trusted and cannot be user-authored -->
       <div v-html="post.content" />
     </UPageBody>

@@ -1,6 +1,6 @@
 <template>
-  <div class="mx-auto max-w-3xl">
-    <UPageBody prose>
+  <div class="container mx-auto">
+    <UPageBody prose class="mx-auto max-w-prose">
       <h1 v-if="post.title">{{ post.title }}</h1>
       <div v-if="lastUpdated">
         <span class="italic">Last updated:</span>&nbsp;

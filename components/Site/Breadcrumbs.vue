@@ -1,7 +1,5 @@
 <template>
-  <div class="mx-auto max-w-3xl">
-    <UBreadcrumb :links="links" />
-  </div>
+  <UBreadcrumb :links="links" />
 </template>
 
 <script setup lang="ts">

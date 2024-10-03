@@ -1,9 +1,11 @@
 <!-- pages/[module]/index.vue -->
 <template>
-  <div class="mx-auto max-w-3xl">
-    <NuxtLink :to="`/${module.slug}`">
-      <h2 class="text-xl">{{ module.name }}</h2>
-    </NuxtLink>
+  <div class="container mx-auto">
+    <h1 class="mb-8 text-xl">
+      <NuxtLink :to="`/${module.slug}`">
+        {{ module.name }}
+      </NuxtLink>
+    </h1>
     <PostList :slug-prefix="module.slug" :posts="module.posts" />
   </div>
 </template>

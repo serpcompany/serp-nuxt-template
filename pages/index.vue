@@ -1,10 +1,12 @@
 <template>
-  <div class="mx-auto max-w-3xl">
+  <div class="container mx-auto">
     <h1 class="text-center text-2xl font-bold">{{ site.name }}</h1>
-    <div v-for="module in modules" :key="module.id">
-      <NuxtLink :to="`/${module.slug}`">
-        <h2 class="text-xl">{{ module.name }}</h2>
-      </NuxtLink>
+    <div v-for="module in modules" :key="module.id" class="mt-8">
+      <h2 class="mb-8 text-xl">
+        <NuxtLink :to="`/${module.slug}`">
+          {{ module.name }}
+        </NuxtLink>
+      </h2>
       <PostList :slug-prefix="module.slug" :posts="module.posts" />
     </div>
   </div>

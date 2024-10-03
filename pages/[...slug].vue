@@ -1,5 +1,5 @@
 <template>
-  <UPage v-show="post" class="mx-auto max-w-[1408px] px-4">
+  <UPage v-show="post" class="container mx-auto">
     <template #left>
       <!-- <UContentToc v-if="post.body?.toc?.links?.length" :links="post.body.toc.links" /> -->
     </template>
