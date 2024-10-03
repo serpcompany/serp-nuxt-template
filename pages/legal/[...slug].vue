@@ -1,6 +1,13 @@
 <template>
   <div class="mx-auto max-w-3xl">
     <UPageBody prose>
+      <h1 v-if="post.title">{{ post.title }}</h1>
+      <div v-if="lastUpdated">
+        <span class="italic">Last updated:</span>&nbsp;
+        <time :datetime="lastUpdated.toISOString()">{{
+          lastUpdatedFormat.format(lastUpdated)
+        }}</time>
+      </div>
       <ContentRenderer :value="post" :data="{ site }" />
     </UPageBody>
   </div>
@@ -46,6 +53,15 @@ site.emailMasked = Object.entries(site.email).reduce(
       : masked,
   {},
 );
+
+const lastUpdated = post.last_updated ? new Date(post.last_updated) : undefined;
+
+const lastUpdatedFormat: Intl.DateTimeFormat = new Intl.DateTimeFormat('en', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
 
 useContentHead(post);
 </script>
