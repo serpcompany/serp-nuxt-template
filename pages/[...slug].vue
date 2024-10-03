@@ -4,8 +4,8 @@
       <!-- <UContentToc v-if="post.body?.toc?.links?.length" :links="post.body.toc.links" /> -->
     </template>
 
-    <h1 v-if="post.title">{{ post.title }}</h1>
     <UPageBody prose>
+      <h1 v-if="post.title">{{ post.title }}</h1>
       <ContentRenderer :value="post" />
     </UPageBody>
 
