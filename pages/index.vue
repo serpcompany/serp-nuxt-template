@@ -24,4 +24,12 @@ if (!data.value) {
 
 const site = useSiteConfig();
 const modules = data.value;
+
+definePageMeta({
+  breadcrumb: {
+    icon: 'heroicons-solid:home',
+    label: 'Home',
+    ariaLabel: 'Home',
+  },
+});
 </script>
