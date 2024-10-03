@@ -8,7 +8,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "postinstall": "nuxt prepare",
-    "lint": "prettier --write . && eslint --quiet",
+    "lint": "prettier -c . && eslint --quiet",
     "preview": "nuxt preview"
   },
   "dependencies": {
