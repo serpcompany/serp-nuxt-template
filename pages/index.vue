@@ -10,14 +10,25 @@
         </h2>
         <PostList :slug-prefix="module.slug" :posts="module.posts" />
       </div>
-      <NuxtLink to="/test/nested/routes/">Test</NuxtLink>
+      <div v-if="content.data" class="mt-8">
+        <h2 class="mb-8 text-xl">Posts</h2>
+        <PostList :posts="posts" />
+      </div>
     </div>
   </NuxtLayout>
 </template>
 <script setup>
-const { data } = await useFetch('/api/posts');
+const [db, content] = await Promise.all([
+  useFetch('/api/posts'),
+  await useAsyncData('content', () =>
+    queryContent('_pages')
+      .where({ slug: { $exists: true }, created_at: { $exists: true } })
+      .sort({ created_at: -1, $numeric: true })
+      .find(),
+  ),
+]);
 
-if (!data.value) {
+if (!db.data.value) {
   throw createError({
     statusCode: 500,
     statusMessage: 'Error loading page',
@@ -26,7 +37,8 @@ if (!data.value) {
 }
 
 const site = useSiteConfig();
-const modules = data.value;
+const modules = db.data.value;
+const posts = content.data.value;
 
 definePageMeta({
   breadcrumb: {

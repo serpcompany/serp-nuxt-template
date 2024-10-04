@@ -17,23 +17,20 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  posts: {
-    type: Array as PropType<
-      { id: number; title: string; date: string; slug: string }[]
-    >,
-    required: true,
-  },
-  slugPrefix: {
-    type: String as PropType<string | undefined>,
-    default: undefined,
-  },
-});
+export interface Post {
+  id: number;
+  title: string;
+  date: string;
+  slug: string;
+}
+
+const props = defineProps<{
+  posts: Post[];
+  slugPrefix?: string;
+}>();
 
 const getPostUrl = (slug: string) => {
-  if (props.slugPrefix) {
-    return `/${props.slugPrefix}/${slug}`;
-  }
-  return `/${slug}`;
+  const prefixed = props.slugPrefix ? `${props.slugPrefix}/${slug}` : slug;
+  return `/${prefixed}/`.replace(/\/+/g, '/');
 };
 </script>

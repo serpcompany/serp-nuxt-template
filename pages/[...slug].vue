@@ -34,7 +34,10 @@ const slug = normalizeSlug(route.params.slug);
 
 const { data } = await useAsyncData(slug, () =>
   queryContent('_pages')
-    .where({ slug: { $regex: new RegExp(`^/?${slug}/?$`, 'i') } })
+    .where({
+      slug: { $regex: new RegExp(`^/?${slug}/?$`, 'i') },
+      created_at: { $exists: true },
+    })
     .findOne(),
 );
 

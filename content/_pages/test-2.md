@@ -1,12 +1,7 @@
 ---
-title: Test page
-slug: /test/nested/routes/
-created_at: 2024-10-01
-breadcrumbs:
-  - null
-  - false
-  - false
-  - label: Test page
+title: Test page 2
+slug: test-page-2
+created_at: 2024-8-01
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
