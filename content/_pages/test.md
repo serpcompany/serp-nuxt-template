@@ -1,6 +1,11 @@
 ---
 title: Test page
 slug: /test/nested/routes/
+breadcrumbs:
+  - null
+  - false
+  - false
+  - label: Test page
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

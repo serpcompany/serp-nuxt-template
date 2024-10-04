@@ -3,5 +3,11 @@
 </template>
 
 <script setup lang="ts">
-const links = useBreadcrumbItems();
+type BreadcrumbItemProps = ReturnType<typeof useBreadcrumbItems>['value'];
+
+const props = defineProps<{
+  links?: BreadcrumbItemProps;
+}>();
+
+const links = props.links || useBreadcrumbItems();
 </script>

@@ -1,16 +1,18 @@
 <template>
-  <div class="container mx-auto">
-    <UPageBody prose class="mx-auto max-w-prose">
-      <h1 v-if="post.title">{{ post.title }}</h1>
-      <div v-if="lastUpdated">
-        <span class="italic">Last updated:</span>&nbsp;
-        <time :datetime="lastUpdated.toISOString()">{{
-          lastUpdatedFormat.format(lastUpdated)
-        }}</time>
-      </div>
-      <ContentRenderer :value="post" :data="{ site }" />
-    </UPageBody>
-  </div>
+  <NuxtLayout name="breadcrumbs">
+    <div class="container mx-auto">
+      <UPageBody prose class="mx-auto max-w-prose">
+        <h1 v-if="post.title">{{ post.title }}</h1>
+        <div v-if="lastUpdated">
+          <span class="italic">Last updated:</span>&nbsp;
+          <time :datetime="lastUpdated.toISOString()">{{
+            lastUpdatedFormat.format(lastUpdated)
+          }}</time>
+        </div>
+        <ContentRenderer :value="post" :data="{ site }" />
+      </UPageBody>
+    </div>
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
