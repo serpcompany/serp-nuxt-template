@@ -3,15 +3,15 @@
     <div class="container mx-auto">
       <h1 class="text-center text-2xl font-bold">{{ site.name }}</h1>
       <div v-for="module in modules" :key="module.id" class="mt-8">
-        <h2 class="mb-8 text-xl">
+        <h2 class="mb-8 text-xl font-bold">
           <NuxtLink :to="`/${module.slug}`">
             {{ module.name }}
           </NuxtLink>
         </h2>
         <PostList :slug-prefix="module.slug" :posts="module.posts" />
       </div>
-      <div v-if="content.data" class="mt-8">
-        <h2 class="mb-8 text-xl">Posts</h2>
+      <div v-if="posts.length > 0" class="mt-8">
+        <h2 class="mb-8 text-xl font-bold">Posts</h2>
         <PostList :posts="posts" />
       </div>
     </div>

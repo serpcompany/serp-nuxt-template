@@ -1,17 +1,13 @@
 <!-- components/post/list.vue -->
 <template>
-  <ul class="space-y-4">
-    <li
-      v-for="post in posts"
-      :key="post.id"
-      class="flex items-baseline justify-between border-b border-gray-200 py-4"
-    >
-      <NuxtLink
-        :to="getPostUrl(post.slug)"
-        class="mr-4 flex-grow text-lg hover:underline"
-      >
+  <ul class="divide-y divide-gray-200 border-y border-gray-200">
+    <li v-for="post in posts" :key="post.id" class="py-4">
+      <NuxtLink :to="getPostUrl(post.slug)" class="text-lg hover:underline">
         {{ post.title }}
       </NuxtLink>
+      <p v-if="post.excerpt" class="mt-2">
+        {{ post.excerpt }}
+      </p>
     </li>
   </ul>
 </template>
