@@ -3,15 +3,14 @@
     <template #breadcrumbs>
       <SiteBreadcrumbs :links="breadcrumbs" />
     </template>
-    <UPage v-show="post" class="mx-auto max-w-[1408px] px-4">
+    <UPage v-show="post" class="container mx-auto">
       <template #left>
         <!-- <UContentToc v-if="post.body?.toc?.links?.length" :links="post.body.toc.links" /> -->
       </template>
 
-      <UPageBody prose class="mx-auto max-w-prose">
-        <h1>{{ post.title }}</h1>
-        <!-- eslint-disable-next-line vue/no-v-html -- no other option at the moment: post content is trusted and cannot be user-authored -->
-        <div v-html="post.content" />
+      <UPageBody prose>
+        <h1 v-if="post.title">{{ post.title }}</h1>
+        <ContentRenderer :value="post" />
       </UPageBody>
 
       <template #right>
@@ -31,30 +30,29 @@
 
 <script setup lang="ts">
 const route = useRoute();
-const { moduleSlug, slug } = route.params;
+const slug = normalizeSlug(route.params.slug);
 
-const { data } = await useFetch('/api/post', {
-  query: {
-    module: moduleSlug,
-    slug,
-  },
-});
+const { data } = await useAsyncData(slug, () =>
+  queryContent('_pages')
+    .where({
+      slug: { $regex: new RegExp(`^/?${slug}/?$`, 'i') },
+      created_at: { $exists: true },
+    })
+    .findOne(),
+);
 
-if (!data.value) {
+const post = data.value; // post is not a ref, immutable
+
+if (!post) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Page not found',
     fatal: true,
   });
 }
+const breadcrumbs = post.breadcrumbs
+  ? useBreadcrumbItems({ overrides: post.breadcrumbs })
+  : undefined;
 
-const post = data.value; // post is not a ref, immutable
-
-useHead({
-  title: post.title,
-});
-
-const breadcrumbs = useBreadcrumbItems({
-  overrides: [undefined, { label: post.module.name }, { label: post.title }],
-});
+useContentHead(post);
 </script>

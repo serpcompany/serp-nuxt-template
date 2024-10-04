@@ -1,41 +1,25 @@
 <!-- components/post/list.vue -->
 <template>
-    <div class="max-w-3xl mx-auto px-4 py-8 font-sans">
-        <ul class="space-y-4">
-            <li
-                v-for="post in posts"
-                :key="post.id"
-                class="flex justify-between items-baseline py-4 border-b border-gray-200"
-            >
-                <NuxtLink
-                    :to="getPostUrl(post.slug)"
-                    class="hover:underline text-lg mr-4 flex-grow"
-                >
-                    {{ post.title }}
-                </NuxtLink>
-            </li>
-        </ul>
-    </div>
+  <ul class="divide-y divide-gray-200 border-y border-gray-200">
+    <li v-for="post in posts" :key="post.id" class="py-4">
+      <NuxtLink :to="getPostUrl(post.slug)" class="text-lg hover:underline">
+        {{ post.title }}
+      </NuxtLink>
+      <p v-if="post.excerpt" class="mt-2">
+        {{ post.excerpt }}
+      </p>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-    posts: {
-        type: Array as PropType<
-            { id: number; title: string; date: string; slug: string }[]
-        >,
-        required: true,
-    },
-    slugPrefix: {
-        type: String as PropType<string | undefined>,
-        default: undefined,
-    },
-});
+const props = defineProps<{
+  posts: PostPreview[];
+  slugPrefix?: string;
+}>();
 
 const getPostUrl = (slug: string) => {
-    if (props.slugPrefix) {
-        return `/${props.slugPrefix}/${slug}`;
-    }
-    return `/${slug}`;
+  const prefixed = props.slugPrefix ? `${props.slugPrefix}/${slug}` : slug;
+  return `/${prefixed}/`.replace(/\/+/g, '/');
 };
 </script>

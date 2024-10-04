@@ -1,31 +1,43 @@
 <!-- pages/[module]/index.vue -->
 <template>
-    <div class="max-w-3xl mx-auto">
+  <NuxtLayout name="breadcrumbs">
+    <template #breadcrumbs>
+      <SiteBreadcrumbs :links="breadcrumbs" />
+    </template>
+    <div class="container mx-auto">
+      <h1 class="mb-8 text-xl">
         <NuxtLink :to="`/${module.slug}`">
-            <h2 class="text-xl">{{ module.name }}</h2>
+          {{ module.name }}
         </NuxtLink>
-        <PostList :slugPrefix="module.slug" :posts="module.posts" />
+      </h1>
+      <PostList :slug-prefix="module.slug" :posts="module.posts" />
     </div>
+  </NuxtLayout>
 </template>
+
 <script setup>
-const module = ref({});
 const route = useRoute();
 const { moduleSlug } = route.params;
 
-const fetchModule = async () => {
-    const response = await $fetch(`/api/posts?module=${moduleSlug}`);
-    console.log(response);
-    if (!response || response.length === 0) {
-        throw createError({
-            statusCode: 404,
-            statusMessage: 'Page not found',
-            fatal: true,
-        });
-    }
-    module.value = response[0];
-};
+const { data } = await useFetch('/api/posts', {
+  query: { module: moduleSlug },
+});
 
-onMounted(() => {
-    fetchModule();
+const module = data.value[0];
+
+if (!module) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page not found',
+    fatal: true,
+  });
+}
+
+useHead({
+  title: module.name,
+});
+
+const breadcrumbs = useBreadcrumbItems({
+  overrides: [undefined, { label: module.name }],
 });
 </script>
