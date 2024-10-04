@@ -38,7 +38,7 @@ if (!db.data.value) {
 
 const site = useSiteConfig();
 const modules = db.data.value;
-const posts = content.data.value;
+const posts = content.data.value?.map(getPostPreviewFromContent) || [];
 
 definePageMeta({
   breadcrumb: {

@@ -1,5 +1,5 @@
 // server/api/posts.ts
-import type { Module, Post } from '.';
+import type { PostPreview, Module } from '~/utils/post';
 import { z } from 'zod';
 import { defineEventHandler, getValidatedQuery } from 'h3';
 import { eq, desc, and } from 'drizzle-orm';
@@ -7,7 +7,7 @@ import cache from '~/middleware/cache';
 import { module, post } from '~/server/database/schema';
 
 export type Response = (Module & {
-  posts: Pick<Post, 'id' | 'title' | 'slug'>[];
+  posts: PostPreview[];
 })[];
 
 // Get the post limit and module from query parameters
@@ -60,6 +60,8 @@ export default defineEventHandler(async (event): Promise<Response> => {
             id: post.id,
             title: post.title,
             slug: post.slug,
+            createdAt: post.createdAt,
+            updatedAt: post.updatedAt,
           })
           .from(post)
           .where(

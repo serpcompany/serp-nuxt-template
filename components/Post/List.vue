@@ -17,15 +17,8 @@
 </template>
 
 <script setup lang="ts">
-export interface Post {
-  id: number;
-  title: string;
-  date: string;
-  slug: string;
-}
-
 const props = defineProps<{
-  posts: Post[];
+  posts: PostPreview[];
   slugPrefix?: string;
 }>();
 

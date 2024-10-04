@@ -1,4 +1,4 @@
-import type { Module, Post } from '.';
+import type { Module, Post } from '~/utils/post';
 import { z } from 'zod';
 import { defineEventHandler, getValidatedQuery, createError } from 'h3';
 import { eq, and } from 'drizzle-orm';
