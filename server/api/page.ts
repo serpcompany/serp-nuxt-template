@@ -2,7 +2,7 @@ import type { Page } from '~/utils/page';
 import { z } from 'zod';
 import { getValidatedQuery, createError } from 'h3';
 import { eq, and } from 'drizzle-orm';
-import { page } from '~/server/database/schema';
+import { page } from '../database/schema';
 import MarkdownIt from 'markdown-it';
 import sanitizeHtml from 'sanitize-html';
 
@@ -64,14 +64,14 @@ export default defineCachedEventHandler(
       .where(and(eq(page.slug, query.data.slug), eq(page.draft, false)))
       .limit(1);
 
-    if (result.length === 0) {
+    const foundPage = result[0]?.page;
+
+    if (!foundPage) {
       throw createError({
         statusCode: 404,
         message: 'Page not found',
       });
     }
-
-    const { page: foundPage } = result[0];
 
     const renderedHtml = md.render(foundPage.content);
     const sanitizedHtml = sanitizeHtml(renderedHtml, sanitizeOptions);

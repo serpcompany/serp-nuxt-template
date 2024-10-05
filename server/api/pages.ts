@@ -2,7 +2,7 @@ import type { PagePreview } from '~/utils/page';
 import { z } from 'zod';
 import { getValidatedQuery } from 'h3';
 import { eq, desc, and } from 'drizzle-orm';
-import { page } from '~/server/database/schema';
+import { page } from '../database/schema';
 
 // Get the post limit and module from query parameters
 const querySchema = z.object({
