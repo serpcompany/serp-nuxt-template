@@ -23,7 +23,7 @@ const links = [
   },
   {
     label: 'Links',
-    to: '/shop',
+    to: '/',
   },
   {
     label: 'More links',
