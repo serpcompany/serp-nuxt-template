@@ -1,17 +1,12 @@
-import type { Module, Post } from '~/utils/post';
+import type { Page } from '~/utils/page';
 import { z } from 'zod';
 import { getValidatedQuery, createError } from 'h3';
 import { eq, and } from 'drizzle-orm';
-import { module, post } from '~/server/database/schema';
+import { page } from '~/server/database/schema';
 import MarkdownIt from 'markdown-it';
 import sanitizeHtml from 'sanitize-html';
 
-export interface Response extends Post {
-  module: Module;
-}
-
 const querySchema = z.object({
-  module: z.string(),
   slug: z.string(),
 });
 
@@ -35,7 +30,7 @@ const sanitizeOptions = {
 };
 
 export default defineCachedEventHandler(
-  async (event): Promise<Response> => {
+  async (event): Promise<Page> => {
     const query = await getValidatedQuery(event, (body) =>
       querySchema.safeParse(body),
     );
@@ -49,59 +44,41 @@ export default defineCachedEventHandler(
       });
     }
 
-    const { module: moduleSlug, slug: postSlug } = query.data;
-
     const result = await db
       .select({
-        post: {
-          id: post.id,
-          title: post.title,
-          slug: post.slug,
-          content: post.content,
-          createdAt: post.createdAt,
-          updatedAt: post.updatedAt,
-        },
-        module: {
-          id: module.id,
-          name: module.name,
-          slug: module.slug,
+        page: {
+          id: page.id,
+          slug: page.slug,
+          title: page.title,
+          description: page.description,
+          image: page.image,
+          content: page.content,
+          createdAt: page.createdAt,
+          updatedAt: page.updatedAt,
+          seoTitle: page.seoTitle,
+          seoDescription: page.seoDescription,
+          seoImage: page.seoImage,
         },
       })
-      .from(post)
-      .innerJoin(module, eq(post.moduleId, module.id))
-      .where(
-        and(
-          eq(module.slug, moduleSlug),
-          eq(post.slug, postSlug),
-          eq(post.status, 'published'),
-        ),
-      )
+      .from(page)
+      .where(and(eq(page.slug, query.data.slug), eq(page.draft, false)))
       .limit(1);
 
     if (result.length === 0) {
       throw createError({
         statusCode: 404,
-        message: 'Post not found',
+        message: 'Page not found',
       });
     }
 
-    const { post: foundPost, module: foundModule } = result[0];
+    const { page: foundPage } = result[0];
 
-    const renderedHtml = md.render(foundPost.content);
+    const renderedHtml = md.render(foundPage.content);
     const sanitizedHtml = sanitizeHtml(renderedHtml, sanitizeOptions);
 
     return {
-      id: foundPost.id,
-      title: foundPost.title,
-      slug: foundPost.slug,
+      ...foundPage,
       content: sanitizedHtml,
-      createdAt: foundPost.createdAt,
-      updatedAt: foundPost.updatedAt,
-      module: {
-        id: foundModule.id,
-        name: foundModule.name,
-        slug: foundModule.slug,
-      },
     };
   },
   { maxAge: Number(process.env.CACHE_TTL || 3600) },
