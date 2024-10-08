@@ -1,0 +1,9 @@
+name: Trufflehog Secret Scan
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  run-trufflehog:
+    uses: serpcompany/.github/.github/workflows/trufflehog-scan.yml@main
