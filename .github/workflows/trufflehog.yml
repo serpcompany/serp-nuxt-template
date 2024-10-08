@@ -6,4 +6,4 @@ on:
 
 jobs:
   run-trufflehog:
-    uses: serpcompany/.github/.github/workflows/trufflehog-scan.yml@main
+    uses: serpcompany/.github/.github/workflows/trufflehog.yml@main
