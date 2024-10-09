@@ -1,3 +1,5 @@
+const { REDIS_HOST, REDIS_PORT, REDIS_PASSWORD } = import.meta.env;
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   site: {
@@ -16,6 +18,16 @@ export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@nuxt/eslint', '@nuxt/content', '@nuxtjs/seo'],
   compatibilityDate: '2024-08-20',
   extends: ['@nuxt/ui-pro'],
+  nitro: {
+    storage: {
+      cache: {
+        driver: 'redis',
+        host: REDIS_HOST,
+        port: REDIS_PORT,
+        password: REDIS_PASSWORD,
+      },
+    },
+  },
   experimental: {
     defaults: {
       nuxtLink: {

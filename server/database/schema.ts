@@ -5,46 +5,20 @@ import {
   varchar,
   text,
   timestamp,
-  integer,
-  primaryKey,
+  boolean,
 } from 'drizzle-orm/pg-core';
 
-export const module = pgTable('module', {
+export const page = pgTable('page', {
   id: serial('id').primaryKey(),
-  name: varchar('name', { length: 255 }).notNull(),
-  slug: varchar('slug', { length: 255 }).notNull().unique(),
-});
-
-export const post = pgTable('post', {
-  id: serial('id').primaryKey(),
-  moduleId: integer('module_id')
-    .notNull()
-    .references(() => module.id),
   title: varchar('title', { length: 255 }).notNull(),
   slug: varchar('slug', { length: 255 }).notNull().unique(),
+  description: text('description'),
   content: text('content').notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
-  status: varchar('status', { length: 20 }).notNull().default('draft'),
+  image: varchar('image', { length: 255 }),
+  draft: boolean('draft').notNull().default(false),
+  seoTitle: varchar('seo_title', { length: 255 }),
+  seoDescription: text('seo_description'),
+  seoImage: text('seo_image'),
 });
-
-export const tag = pgTable('tag', {
-  id: serial('id').primaryKey(),
-  name: varchar('name', { length: 255 }).notNull(),
-  slug: varchar('slug', { length: 255 }).notNull().unique(),
-});
-
-export const postTagMap = pgTable(
-  'post_tag_map',
-  {
-    postId: integer('post_id')
-      .notNull()
-      .references(() => post.id),
-    tagId: integer('tag_id')
-      .notNull()
-      .references(() => tag.id),
-  },
-  (table) => ({
-    pk: primaryKey({ columns: [table.postId, table.tagId] }),
-  }),
-);

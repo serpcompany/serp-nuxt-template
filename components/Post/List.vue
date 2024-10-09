@@ -5,8 +5,8 @@
       <NuxtLink :to="getPostUrl(post.slug)" class="text-lg hover:underline">
         {{ post.title }}
       </NuxtLink>
-      <p v-if="post.excerpt" class="mt-2">
-        {{ post.excerpt }}
+      <p v-if="post.description" class="mt-2">
+        {{ post.description }}
       </p>
     </li>
   </ul>
@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  posts: PostPreview[];
+  posts: PagePreview[];
   slugPrefix?: string;
 }>();
 
