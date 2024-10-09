@@ -27,6 +27,7 @@ export default defineNuxtConfig({
         password: REDIS_PASSWORD,
       },
     },
+    preset: 'static', // Ensure the preset is for static sites
   },
   experimental: {
     defaults: {
@@ -35,4 +36,5 @@ export default defineNuxtConfig({
       },
     },
   },
+  ssr: true,
 });
