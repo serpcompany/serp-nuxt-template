@@ -4,7 +4,8 @@ This is our Nuxt boilerplate project for websites.
 
 **Technologies:**
 
-- Nuxt + NuxtUI
+- Nuxt
+- shadcn-vue
 - Nuxt Content
 - Postgres + Drizzle ORM
 - Zod
